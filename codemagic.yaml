@@ -26,9 +26,9 @@ workflows:
       - name: Build AAB with flutter
         script: |
           flutter build appbundle --release
-      # - name: Build APK with flutter
-      #   script: |
-      #     flutter build apk --release
+      - name: Build APK with flutter
+        script: |
+          flutter build apk --release
 
       # - name: Flutter unit tests
       #   script: |
@@ -41,6 +41,7 @@ workflows:
       #       --build-name=1.0.$BUILD_NUMBER \
       #       --build-number=$BUILD_NUMBER
     artifacts:
+      - build/**/outputs/*
       - build/**/outputs/**/*.aab
       - build/**/outputs/**/*.apk
       - build/**/outputs/**/mapping.txt
