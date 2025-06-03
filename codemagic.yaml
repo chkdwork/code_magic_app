@@ -4,12 +4,12 @@ workflows:
     # instance_type: mac_mini_m2 # <-- Removed as per sggestion from Codemagic team, since instance allocated is Special M4 Pro
     max_build_duration: 120
     environment:
+      xcode: 16.2
       android_signing:
         - CodeMagic Debug Key
       groups:
         - google_play # <-- (Includes GCLOUD_SERVICE_ACCOUNT_CREDENTIALS)
       vars:
-        xcode: 16.2
         PACKAGE_NAME: "io.codemagic.flutteryaml" # <-- Put your package name here
         GOOGLE_PLAY_TRACK: "alpha"
       flutter: stable
