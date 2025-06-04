@@ -61,8 +61,8 @@ workflows:
     name: iOS Workflow
     # instance_type: mac_mini_m2 # <-- Removed as per sggestion from Codemagic team, since instance allocated is Special M4 Pro
     max_build_duration: 120
-    integrations:
-      app_store_connect: codemagic
+    # integrations:
+    #   app_store_connect: codemagic
     environment:
       ios_signing:
         distribution_type: development # ad_hoc | development | enterprise
