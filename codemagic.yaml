@@ -92,6 +92,8 @@ workflows:
       - name: Flutter build ipa
         script: |
           flutter build ipa --export-method development
+            --build-name=1.0.0 \
+            --export-options-plist=/Users/builder/export_options.plist
       # - name: Flutter build ipa and automatic versioning
       #   script: |
       #     # See the following link about getting the latest App Store or TestFlight version - https://docs.codemagic.io/knowledge-codemagic/build-versioning/#app-store-or-testflight-latest-build-number
