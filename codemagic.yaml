@@ -1,6 +1,6 @@
 workflows:
   android-workflow:
-    name: Android Workflow
+    name: Android Workflow (DEV)
     # instance_type: mac_mini_m2 # <-- Removed as per sggestion from Codemagic team, since instance allocated is Special M4 Pro
     max_build_duration: 120
     environment:
@@ -131,6 +131,70 @@ workflows:
       #   # Configuration related to App Store (optional)
       #   # Note: This action is performed during post-processing.
       #   submit_to_app_store: false
+
+  iOS-Android-workflow:
+    name: iOS & Android Workflow (DEV)
+    # instance_type: mac_mini_m2 # <-- Removed as per sggestion from Codemagic team, since instance allocated is Special M4 Pro
+    max_build_duration: 120
+    # integrations:
+    #   app_store_connect: codemagic
+    environment:
+      ios_signing:
+        distribution_type: development # ad_hoc | development | enterprise
+        bundle_identifier: com.prudential.pruservices.dev
+      android_signing:
+        - CodeMagic Debug Key
+      vars:
+        APP_ID: 2LQYQD27P7 # <-- Put your APP ID here
+      flutter: stable
+      xcode: 16.2 # <-- set to specific version e.g. 14.3, 15.0 to avoid unexpected updates.
+      cocoapods: default
+    scripts:
+      - name: Set up code signing settings on Xcode project
+        script: |
+          xcode-project use-profiles
+      - name: Get Flutter packages
+        script: |
+          flutter packages pub get
+      - name: Install pods
+        script: |
+          find . -name "Podfile" -execdir pod install \;
+      - name: Flutter analyze
+        script: |
+          flutter analyze
+      - name: Flutter unit tests
+        script: |
+          flutter test
+        ignore_failure: true
+      - name: Flutter build ipa
+        script: |
+          flutter build ipa --export-options-plist=/Users/builder/export_options.plist
+      - name: Android - Set up local.properties
+        script: |
+          echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
+      - name: Android - Build AAB with flutter
+        script: |
+          flutter build appbundle --release
+      - name: Android - Build APK with flutter
+        script: |
+          flutter build apk --release
+
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - flutter_drive.log
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/*.apk
+      - build/**/outputs/**/mapping.txt
+    publishing:
+      # See the following link for details about email publishing - https://docs.codemagic.io/publishing-yaml/distribution/#email
+      email:
+        recipients:
+          - dicky.hk.chu@prudential.com.hk
+        notify:
+          success: true # To receive a notification when a build succeeds
+          failure: false # To not receive a notification when a build fails
+
 
   # web-workflow:
   #   name: Web app workflow
