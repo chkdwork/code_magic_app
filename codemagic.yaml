@@ -58,7 +58,7 @@ workflows:
       #   submit_as_draft: true
 
   ios-workflow:
-    name: iOS Workflow
+    name: iOS Workflow (DEV)
     # instance_type: mac_mini_m2 # <-- Removed as per sggestion from Codemagic team, since instance allocated is Special M4 Pro
     max_build_duration: 120
     # integrations:
@@ -91,8 +91,7 @@ workflows:
         ignore_failure: true
       - name: Flutter build ipa
         script: |
-          flutter build ipa --export-method development 
-          --export-options-plist=/Users/builder/ExportOptions_DEV.plist
+          flutter build ipa --export-options-plist=build/ExportOptions_DEV.plist
       # - name: Flutter build ipa and automatic versioning
       #   script: |
       #     # See the following link about getting the latest App Store or TestFlight version - https://docs.codemagic.io/knowledge-codemagic/build-versioning/#app-store-or-testflight-latest-build-number
