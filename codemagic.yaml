@@ -191,6 +191,8 @@ workflows:
       email:
         recipients:
           - dicky.hk.chu@prudential.com.hk
+          - xiongbo.cen@prudential.com.cn
+          - peter.mekhaeil@prudential.com.sg
         notify:
           success: true # To receive a notification when a build succeeds
           failure: false # To not receive a notification when a build fails
