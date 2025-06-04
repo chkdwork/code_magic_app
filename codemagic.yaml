@@ -29,11 +29,10 @@ workflows:
       - name: Build APK with flutter
         script: |
           flutter build apk --release
-
-      # - name: Flutter unit tests
-      #   script: |
-      #     flutter test
-      #   ignore_failure: true
+      - name: Flutter unit tests
+        script: |
+          flutter test
+        ignore_failure: true
       # - name: Build AAB with Flutter
       #   script: |
       #     BUILD_NUMBER=$(($(google-play get-latest-build-number --package-name "$PACKAGE_NAME" --tracks="$GOOGLE_PLAY_TRACK") + 1))
@@ -41,7 +40,7 @@ workflows:
       #       --build-name=1.0.$BUILD_NUMBER \
       #       --build-number=$BUILD_NUMBER
     artifacts:
-      - build/**/outputs/*
+      # - build/**/outputs/*
       - build/**/outputs/**/*.aab
       - build/**/outputs/**/*.apk
       - build/**/outputs/**/mapping.txt
