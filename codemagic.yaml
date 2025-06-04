@@ -196,6 +196,13 @@ workflows:
         notify:
           success: true # To receive a notification when a build succeeds
           failure: false # To not receive a notification when a build fails
+      slack:
+        # See the following link about how to connect your Slack account - https://docs.codemagic.io/publishing-yaml/distribution/#slack
+        channel: "#gtp-gbl-codemagic"
+        notify_on_build_start: true # To receive a notification when a build starts
+        notify:
+          success: true # To receive a notification when a build succeeds
+          failure: false # To not receive a notification when a build fails
 
 
   # web-workflow:
