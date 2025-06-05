@@ -175,10 +175,10 @@ workflows:
           echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
       - name: Android - Build AAB with flutter
         script: |
-          flutter build appbundle --release --build-name=1.0.$PROJECT_BUILD_NUMBER --build-number=$PROJECT_BUILD_NUMBER --package-name "$ANDROID_PACKAGE_NAME"
+          flutter build appbundle --release --build-name=1.0.$PROJECT_BUILD_NUMBER --build-number=$PROJECT_BUILD_NUMBER --package-name $ANDROID_PACKAGE_NAME
       - name: Android - Build APK with flutter # <-- --build-name=1.0.1 --build-number=2
         script: |
-          flutter build apk --release --build-name=1.0.$PROJECT_BUILD_NUMBER --build-number=$PROJECT_BUILD_NUMBER --package-name "$ANDROID_PACKAGE_NAME"
+          flutter build apk --release --build-name=1.0.$PROJECT_BUILD_NUMBER --build-number=$PROJECT_BUILD_NUMBER --package-name $ANDROID_PACKAGE_NAME
 
     artifacts:
       - build/ios/ipa/*.ipa
