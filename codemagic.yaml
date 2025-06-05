@@ -166,7 +166,7 @@ workflows:
         script: |
           flutter test
         ignore_failure: true
-      - name: Flutter build ipa
+      - name: Flutter build ipa --build-number=$PROJECT_BUILD_NUMBER
         script: |
           flutter build ipa --export-options-plist=/Users/builder/export_options.plist
       - name: Android - Set up local.properties
@@ -174,10 +174,10 @@ workflows:
           echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
       - name: Android - Build AAB with flutter
         script: |
-          flutter build appbundle --release
-      - name: Android - Build APK with flutter
+          flutter build appbundle --release --build-number=$PROJECT_BUILD_NUMBER
+      - name: Android - Build APK with flutter # <-- --build-name=1.0.1 --build-number=2
         script: |
-          flutter build apk --release
+          flutter build apk --release --build-number=$PROJECT_BUILD_NUMBER
 
     artifacts:
       - build/ios/ipa/*.ipa
