@@ -216,6 +216,7 @@ class _MyHomePageState extends State<MyHomePage>
                       // _controller.forward(from: 0);
                     },
                     fit: BoxFit.cover,
+                    frameRate: FrameRate.max,
                   ),
                 ),
               ),
