@@ -128,11 +128,6 @@ class _MyHomePageState extends State<MyHomePage>
     // } else {
     //   _controller.repeat();
     // }
-    // if (_controller.isAnimating) {
-    //   _controller.stop();
-    // } else {
-    //   _controller.repeat();
-    // }
     setState(() {
       _showFirework = true;
     });
@@ -214,13 +209,17 @@ class _MyHomePageState extends State<MyHomePage>
                 child: Container(
                   color: Colors.black.withAlpha((0.2 * 255).toInt()),
                   child: Center(
-                    child: Lottie.asset(
-                      'assets/firework_animation2.json', // Make sure this file exists in your assets
-                      controller: _controller,
-                      onLoaded: (composition) {
-                        _controller.duration = composition.duration;
-                        _controller.forward(from: 0);
-                      },
+                    child: SizedBox(
+                      width: 350, // Increase width as needed
+                      height: 350,
+                      child: Lottie.asset(
+                        'assets/firework_animation2.json', // Make sure this file exists in your assets
+                        controller: _controller,
+                        onLoaded: (composition) {
+                          _controller.duration = composition.duration;
+                          _controller.forward(from: 0);
+                        },
+                      ),
                     ),
                   ),
                 ),
