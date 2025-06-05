@@ -81,6 +81,7 @@ class _MyHomePageState extends State<MyHomePage>
       vsync: this,
       duration: const Duration(seconds: 2),
     );
+
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         setState(() {
@@ -203,24 +204,18 @@ class _MyHomePageState extends State<MyHomePage>
             ),
           ),
           if (_showFirework)
-            IgnorePointer(
-              ignoring: true, // Allows taps and scrolls to pass through
-              child: Positioned.fill(
-                child: Container(
-                  color: Colors.black.withAlpha((0.2 * 255).toInt()),
-                  child: Center(
-                    child: SizedBox(
-                      width: 350, // Increase width as needed
-                      height: 350,
-                      child: Lottie.asset(
-                        'assets/firework_animation2.json', // Make sure this file exists in your assets
-                        controller: _controller,
-                        onLoaded: (composition) {
-                          _controller.duration = composition.duration;
-                          _controller.forward(from: 0);
-                        },
-                      ),
-                    ),
+            Positioned.fill(
+              child: Container(
+                color: Colors.black.withAlpha((0.1 * 255).toInt()),
+                child: Center(
+                  child: Lottie.asset(
+                    'assets/animations/firework_animation1.json', // Make sure this file exists in your assets
+                    controller: _controller,
+                    onLoaded: (composition) {
+                      _controller.duration = composition.duration;
+                      // _controller.forward(from: 0);
+                    },
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
