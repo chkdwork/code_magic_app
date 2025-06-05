@@ -212,7 +212,7 @@ class _MyHomePageState extends State<MyHomePage>
               ignoring: true, // Allows taps and scrolls to pass through
               child: Positioned.fill(
                 child: Container(
-                  color: Colors.black.withOpacity(0.2),
+                  color: Colors.black.withAlpha((0.2 * 255).toInt()),
                   child: Center(
                     child: Lottie.asset(
                       'assets/firework_animation2.json', // Make sure this file exists in your assets
