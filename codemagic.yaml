@@ -168,16 +168,16 @@ workflows:
         ignore_failure: true
       - name: Flutter build ipa
         script: |
-          flutter build ipa --export-options-plist=/Users/builder/export_options.plist --build-number=$PROJECT_BUILD_NUMBER
+          flutter build ipa --export-options-plist=/Users/builder/export_options.plist --build-name=1.0.$PROJECT_BUILD_NUMBER --build-number=$PROJECT_BUILD_NUMBER
       - name: Android - Set up local.properties
         script: |
           echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
       - name: Android - Build AAB with flutter
         script: |
-          flutter build appbundle --release --build-number=$PROJECT_BUILD_NUMBER
+          flutter build appbundle --release --build-name=1.0.$PROJECT_BUILD_NUMBER --build-number=$PROJECT_BUILD_NUMBER
       - name: Android - Build APK with flutter # <-- --build-name=1.0.1 --build-number=2
         script: |
-          flutter build apk --release --build-number=$PROJECT_BUILD_NUMBER
+          flutter build apk --release --build-name=1.0.$PROJECT_BUILD_NUMBER --build-number=$PROJECT_BUILD_NUMBER
 
     artifacts:
       - build/ios/ipa/*.ipa
