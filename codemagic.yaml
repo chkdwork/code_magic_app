@@ -138,13 +138,6 @@ workflows:
     max_build_duration: 120
     # integrations:
     #   app_store_connect: codemagic
-    triggering:
-      events:
-        - push # <-- Trigger on push to the repository
-      branch_patterns:
-        - pattern: "master"
-          include: true
-          source: false
     environment:
       ios_signing:
         distribution_type: development # ad_hoc | development | enterprise
@@ -157,6 +150,14 @@ workflows:
       flutter: stable
       xcode: 16.2 # <-- set to specific version e.g. 14.3, 15.0 to avoid unexpected updates.
       cocoapods: default
+    triggering:
+      events:
+        - push # <-- Trigger on push to the repository
+        - pull_request
+      branch_patterns:
+        - pattern: "master"
+          include: true
+          source: false
     scripts:
       - name: Set up code signing settings on Xcode project
         script: |
