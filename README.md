@@ -1,3 +1,5 @@
+[![Codemagic build status](<https://api.codemagic.io/apps/683d4352fbfe96fe5d991601/iOS&AndroidWorkflow(DEV)/status_badge.svg>)](<https://codemagic.io/app/683d4352fbfe96fe5d991601/iOS&AndroidWorkflow(DEV)/latest_build>)
+
 # code_magic_app
 
 A new Flutter project.
