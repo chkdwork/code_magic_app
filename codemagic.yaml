@@ -192,7 +192,8 @@ workflows:
       - /tmp/xcodebuild_logs/*.log
       - flutter_drive.log
       - build/**/outputs/**/*.aab
-      - build/**/outputs/**/*.apk
+      # - build/**/outputs/**/*.apk
+      - build/**/outputs/flutter-apk/*.apk
       - build/**/outputs/**/mapping.txt
     publishing:
       # See the following link for details about email publishing - https://docs.codemagic.io/publishing-yaml/distribution/#email
