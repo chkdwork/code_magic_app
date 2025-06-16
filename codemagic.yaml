@@ -136,8 +136,6 @@ workflows:
     name: iOS & Android Workflow (DEV)
     # instance_type: mac_mini_m2 # <-- Removed as per sggestion from Codemagic team, since instance allocated is Special M4 Pro
     max_build_duration: 120
-    # integrations:
-    #   app_store_connect: Code Magic API Key
     environment:
       ios_signing:
         distribution_type: development # ad_hoc | development | enterprise
@@ -212,24 +210,13 @@ workflows:
         notify:
           success: true # To receive a notification when a build succeeds
           failure: false # To not receive a notification when a build fails
-      # app_store_connect:
-      #   auth: integration
 
-      #   # Configuration related to TestFlight (optional)
-      #   # Note: This action is performed during post-processing.
-      #   submit_to_testflight: false # Internal Tester only
-      #   beta_groups: # Specify the names of beta tester groups that will get access to the build once it has passed beta review.
-      #     - UAT Testers
-
-      #   # Configuration related to App Store (optional)
-      #   # Note: This action is performed during post-processing.
-      #   submit_to_app_store: false
 testflight-workflow:
   name: Testflight Workflow
   # instance_type: mac_mini_m2 # <-- Removed as per sggestion from Codemagic team, since instance allocated is Special M4 Pro
   max_build_duration: 120
-  # integrations:
-  #   app_store_connect: Code Magic API Key
+  integrations:
+    app_store_connect: Code Magic API Key
   environment:
     ios_signing:
       distribution_type: app_store # ad_hoc | development | enterprise
