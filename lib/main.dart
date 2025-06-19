@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:lottie/lottie.dart';
-import 'dart:math';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +30,7 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown),
       ),
       home: const MyHomePage(title: 'Code Magic Demo'),
     );
@@ -72,13 +71,6 @@ class _MyHomePageState extends State<MyHomePage>
   late AnimationController _controller;
   bool _showFirework = false;
 
-  //Random Animation
-  final List<String> _fireworkAnimations = [
-    'assets/animations/firework_animation1.json',
-    'assets/animations/firework_animation2.json',
-  ];
-  late String _currentFireworkAnimation;
-
   @override
   void initState() {
     super.initState();
@@ -89,7 +81,6 @@ class _MyHomePageState extends State<MyHomePage>
       vsync: this,
       duration: const Duration(seconds: 2),
     );
-    _currentFireworkAnimation = _fireworkAnimations[0];
 
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
@@ -133,16 +124,14 @@ class _MyHomePageState extends State<MyHomePage>
   }
 
   void _fireworkAnimation() {
+    // if (_controller.isAnimating) {
+    //   _controller.stop();
+    // } else {
+    //   _controller.repeat();
+    // }
     setState(() {
       _showFirework = true;
-
-      // Pick a random animation
-      final random = Random();
-      _currentFireworkAnimation =
-          _fireworkAnimations[random.nextInt(_fireworkAnimations.length)];
     });
-
-    // Play the animation
     _controller.forward(from: 0);
   }
 
@@ -220,12 +209,14 @@ class _MyHomePageState extends State<MyHomePage>
                 color: Colors.black.withAlpha((0.1 * 255).toInt()),
                 child: Center(
                   child: Lottie.asset(
-                    _currentFireworkAnimation,
+                    'assets/animations/firework_animation1.json', // Make sure this file exists in your assets
                     controller: _controller,
                     onLoaded: (composition) {
                       _controller.duration = composition.duration;
+                      // _controller.forward(from: 0);
                     },
                     fit: BoxFit.cover,
+                    frameRate: FrameRate.max,
                   ),
                 ),
               ),
