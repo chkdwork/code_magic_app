@@ -234,7 +234,7 @@ workflows:
         - push # <-- Trigger on push to the repository
         - pull_request
       branch_patterns:
-        - pattern: "test-distribution"
+        - pattern: "feature/test-distribution"
           include: true
           source: false
     scripts:
